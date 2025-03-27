@@ -45,9 +45,9 @@ import DiagramChart from '@/components/DiagramChart.vue';
     display: flex;
     justify-content: center;
     gap: 30px;
-    height: 82vh;
+    height: 86vh;
     background: linear-gradient(45deg, rgba(223, 223, 223, 0) 0%, #CADFF2 100%);
-    padding: 30px;
+    padding: 2vh;
 }
 
 /* #DFDFDF with 0 opacity to #CADFF2 with 100% opcacity in diagonal */
@@ -84,7 +84,7 @@ import DiagramChart from '@/components/DiagramChart.vue';
     width: 100%;
 }
 
-.chart>*{
+.chart>* {
     height: 100%;
     width: 100%;
 }
@@ -93,16 +93,16 @@ import DiagramChart from '@/components/DiagramChart.vue';
     transform: scale(1.03);
 }
 
- .column > *>* {
+.column>*>* {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: 0.1s;
     display: flex;
-	flex-direction: column;
-	justify-content: end;
-	background-color: white;
-	border-radius: 20px;
-	box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
-} 
+    flex-direction: column;
+    justify-content: end;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
+}
 
 .chart-1 {
     --chart-index: 1;

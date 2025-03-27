@@ -24,8 +24,9 @@ const handleCreate = () => {
 <template>
     <div class="form">
         <h2>Connectez-vous !</h2>
-        <CustomInput type="email" placeholder="Email..." id="email" icone="at" v-model="email"></CustomInput>
-        <CustomInput type="password" placeholder="Mot de passe..." id="password" icone="lock" v-model="password">
+        <CustomInput type="email" placeholder="Email..." id="email_connexion" icone="at" v-model="email"></CustomInput>
+        <CustomInput type="password" placeholder="Mot de passe..." id="password_connexion" icone="lock"
+            v-model="password">
         </CustomInput>
         <ButtonConnexion @click="handleConnect" :disabled="!password || !email">Se connecter</ButtonConnexion>
         <div class="bar">

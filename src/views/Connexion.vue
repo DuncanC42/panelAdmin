@@ -24,7 +24,7 @@ import FormConnexion from '@/components/FormConnexion.vue';
     background-color: white;
     box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    padding:40px 80px;
+    padding:60px 80px;
     width: 15vw;
 }
 </style>

@@ -44,7 +44,8 @@ const handleConnect = () => {
 
 <template>
     <div class="main">
-        <FormInscription ref="page_creation" v-show="createAccount" @connectAccount="handleConnect"></FormInscription>
+        <FormInscription ref="page_creation" v-show="createAccount" @connectAccount="handleConnect">
+        </FormInscription>
         <FormConnexion ref="page_connexion" v-show="!createAccount" @createAccount="handleCreate"></FormConnexion>
     </div>
 </template>

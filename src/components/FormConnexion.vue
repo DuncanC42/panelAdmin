@@ -2,17 +2,21 @@
 
 import CustomInput from './CustomInput.vue';
 import ButtonConnexion from './ButtonConnexion.vue';
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
 const email = ref('')
 const password = ref('')
+const showLoading = inject('showLoading');
 
 const emit = defineEmits(['createAccount'])
 
 const handleConnect = () => {
-    router.push('panel')
+    showLoading.value = true
+    setTimeout(() => {
+        router.push('panel')
+    }, 1000)
 }
 
 const handleCreate = () => {

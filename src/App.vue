@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView, useRouter } from 'vue-router';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, provide } from 'vue';
 import Header from './components/Header.vue';
 import LoadPage from './components/LoadPage.vue';
 
@@ -13,6 +13,10 @@ const hideLoading = () => {
         showLoading.value = false;
     }, 500); // Updated to 500ms for consistency with animation
 };
+
+// Provide the loading state and function to child components
+provide('showLoading', showLoading);
+provide('hideLoading', hideLoading);
 
 router.beforeEach((to, from, next) => {
     hideLoading();
@@ -41,7 +45,7 @@ onMounted(() => {
 
 /* Fade animation for LoadPage */
 .fade-enter-active {
-    transition: opacity 0.2s ease;
+    transition: opacity 0.1s ease;
 }
 
 .fade-leave-active {

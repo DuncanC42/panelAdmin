@@ -92,9 +92,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.conteneur {
-
-}
 
 span {
 	font-size: large;

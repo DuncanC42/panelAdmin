@@ -102,8 +102,6 @@ import DiagramChart from '@/components/DiagramChart.vue';
 	background-color: white;
 	border-radius: 20px;
 	box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 8px 13px 23px 0 rgba(0, 0, 0, 0.15);
-
 } 
 
 .chart-1 {

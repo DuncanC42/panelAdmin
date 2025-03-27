@@ -1,6 +1,4 @@
 <script setup>
-import { icon } from '@fortawesome/fontawesome-svg-core';
-
 
 const value = defineModel()
 
@@ -8,14 +6,14 @@ const props = defineProps({
     type: String,
     placeholder: String,
     id : String,
-    icon: String
+    icone: String
 })
 
 </script>
 
 <template>
     <div>
-        <font-awesome-icon :icon="['fas', icon]" />
+        <font-awesome-icon :icon="['fas', icone]" />
         <input :type="type" :placeholder="placeholder" :id="id" v-model="value">
     </div>
 </template>
@@ -24,15 +22,22 @@ const props = defineProps({
 <style scoped>
 
 div{
-    border : solid black 1px;
-    padding: 5px;
-    /* deisable navigator default style */
-     
-    appearance: none;   
+    border : solid rgba(0, 0, 0, 0.7) 2px;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap : 10px;
+    color : rgba(0, 0, 0, 0.7);
+    width:100%;
 
 }
 
 div>input{
-    appearance: none;
+    all: unset;
+    border: none;
+    color:black;
+
 }
+
 </style>

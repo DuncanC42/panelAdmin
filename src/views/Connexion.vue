@@ -14,7 +14,6 @@ import FormConnexion from '@/components/FormConnexion.vue';
 .main {
     height: 82vh;
     background: linear-gradient(45deg, rgba(223, 223, 223, 0) 0%, #CADFF2 100%);
-    padding: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +24,7 @@ import FormConnexion from '@/components/FormConnexion.vue';
     background-color: white;
     box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    padding: 20px;
+    padding:40px 80px;
+    width: 15vw;
 }
 </style>

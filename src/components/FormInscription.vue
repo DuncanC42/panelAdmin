@@ -8,32 +8,40 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 const email = ref('')
 const password = ref('')
+const password_check = ref('')
+const key = ref('')
 
-const emit = defineEmits(['createAccount'])
+const emit = defineEmits(['connectAccount'])
 
-const handleConnect = () => {
+const handleCreate = () => {
     router.push('panel')
 }
 
-const handleCreate = () => {
-    emit('createAccount')
+const handleConnect = () => {
+    emit('connectAccount')
 }
 
 </script>
 
 <template>
     <div class="form">
-        <h2>Connectez-vous !</h2>
+        <h2>Créer un nouveau compte !</h2>
         <CustomInput type="email" placeholder="Email..." id="email" icone="at" v-model="email"></CustomInput>
         <CustomInput type="password" placeholder="Mot de passe..." id="password" icone="lock" v-model="password">
         </CustomInput>
-        <ButtonConnexion @click="handleConnect" :disabled="!password || !email">Se connecter</ButtonConnexion>
+        <CustomInput type="password" placeholder="Confirmer le mot de passe..." id="password_check" icone="lock"
+            v-model="password_check">
+        </CustomInput>
+        <CustomInput type="password" placeholder="Chaine d'authentification..." id="key" icone="key" v-model="key">
+        </CustomInput>
+        <ButtonConnexion @click="handleCreate" :disabled="!password || !email || !password_check || !key">Créer le
+            compte</ButtonConnexion>
         <div class="bar">
             <hr>
             <span>ou</span>
             <hr>
         </div>
-        <span class="link" @click="handleCreate">Créer un compte administrateur</span>
+        <span class="link" @click="handleConnect">Se connecter à un compte existant</span>
     </div>
 </template>
 

@@ -93,12 +93,7 @@ onMounted(() => {
 
 <style scoped>
 .conteneur {
-	display: flex;
-	flex-direction: column;
-	justify-content: end;
-	background-color: white;
-	border-radius: 20px;
-	box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
+
 }
 
 span {

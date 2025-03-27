@@ -90,12 +90,20 @@ import DiagramChart from '@/components/DiagramChart.vue';
 }
 
 .column>*>*:hover {
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
  .column > *>* {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: 0.1s;
+    display: flex;
+	flex-direction: column;
+	justify-content: end;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 8px 13px 23px 0 rgba(0, 0, 0, 0.15);
+
 } 
 
 .chart-1 {

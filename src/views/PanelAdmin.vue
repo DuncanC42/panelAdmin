@@ -28,7 +28,9 @@ import PlayerManagement from "@/views/PlayerManagement.vue";
         </div>
         <div class="column">
             <transition name="slide-fade" appear>
-                <PlayerManagement></PlayerManagement>
+                <div class="chart chart-4" key="chart4">
+                    <PlayerManagement></PlayerManagement>
+                </div>
             </transition>
         </div>
     </div>

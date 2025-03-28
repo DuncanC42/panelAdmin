@@ -1,6 +1,6 @@
 <template>
 	<div class="conteneur">
-		<span>Temps moyen passé sur chaque jeu</span>
+		<span>Nombre total de comptes joueurs créés</span>
 		<div ref="chart" class="chart"></div> <!-- Use class for styling -->
 	</div>
 </template>
@@ -36,11 +36,6 @@ onMounted(() => {
 				return [pt[0], '10%'];
 			}
 		},
-		title: {
-			left: 'center',
-			text: 'Large Area Chart'
-		},
-
 		xAxis: {
 			type: 'category',
 			boundaryGap: false,
@@ -92,15 +87,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.conteneur {
-	display: flex;
-	flex-direction: column;
-	justify-content: end;
-	background-color: white;
-	border-radius: 20px;
-	box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
-}
-
 span {
 	font-size: large;
 	margin: 0;
@@ -116,8 +102,6 @@ span {
 
 .chart {
 	width: 85%;
-	/* Set width here */
 	height: 85%;
-	/* Set height here */
 }
 </style>

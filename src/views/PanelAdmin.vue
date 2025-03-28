@@ -46,9 +46,9 @@ import PlayerManagement from "@/views/PlayerManagement.vue";
     display: flex;
     justify-content: center;
     gap: 30px;
-    height: 82vh;
+    height: 86vh;
     background: linear-gradient(45deg, rgba(223, 223, 223, 0) 0%, #CADFF2 100%);
-    padding: 30px;
+    padding: 2vh;
 }
 
 /* #DFDFDF with 0 opacity to #CADFF2 with 100% opcacity in diagonal */

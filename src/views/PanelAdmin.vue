@@ -19,7 +19,7 @@ import PlayerManagement from "@/views/PlayerManagement.vue";
                 </div>
             </transition>
         </div>
-        <div class="column">
+        <div class="column" style="width: 70vw;">
             <transition name="slide-fade" appear>
                 <div class="chart chart-3" key="chart3">
                     <PieChart></PieChart>
@@ -28,14 +28,7 @@ import PlayerManagement from "@/views/PlayerManagement.vue";
         </div>
         <div class="column">
             <transition name="slide-fade" appear>
-                <div class="chart chart-4" key="chart4">
-                    <PieChart></PieChart>
-                </div>
-            </transition>
-            <transition name="slide-fade" appear>
-                <div class="chart chart-5" key="chart5">
-                    <PieChart></PieChart>
-                </div>
+                <PlayerManagement></PlayerManagement>
             </transition>
         </div>
     </div>
@@ -60,6 +53,7 @@ import PlayerManagement from "@/views/PlayerManagement.vue";
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 
 .column>* {
@@ -85,7 +79,7 @@ import PlayerManagement from "@/views/PlayerManagement.vue";
     width: 100%;
 }
 
-.chart>*{
+.chart>* {
     height: 100%;
     width: 100%;
 }
@@ -94,7 +88,7 @@ import PlayerManagement from "@/views/PlayerManagement.vue";
     transform: scale(1.03);
 }
 
- .column > *>* {
+.column>*>* {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: 0.1s;
     display: flex;

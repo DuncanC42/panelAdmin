@@ -1,31 +1,14 @@
 <template>
-  <div class="conteneur">
+  <div class="card">
     <div class="search-container">
-      <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Rechercher..."
-          class="search-bar"
-      />
-      <easy-data-table
-          v-model:items-selected="itemsSelected"
-          :headers="headers"
-          :items="filteredItems"
-          :rows-per-page="20"
-          class="data-table"
-      >
+      <input v-model="searchQuery" type="text" placeholder="Rechercher..." class="search-bar" />
+      <easy-data-table v-model:items-selected="itemsSelected" :headers="headers" :items="filteredItems"
+        :rows-per-page="20" class="data-table">
         <template #item-actions="{ item }">
           <div class="action-buttons">
-            <font-awesome-icon
-                :icon="['fas', 'magnifying-glass']"
-                class="action-icon search-icon"
-                @click="handleSearch(item)"
-            />
-            <font-awesome-icon
-                :icon="['fas', 'trash']"
-                class="action-icon delete-icon"
-                @click="handleDelete(item)"
-            />
+            <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="action-icon search-icon"
+              @click="handleSearch(item)" />
+            <font-awesome-icon :icon="['fas', 'trash']" class="action-icon delete-icon" @click="handleDelete(item)" />
           </div>
         </template>
       </easy-data-table>
@@ -51,11 +34,11 @@ type Item = {
 };
 
 const headers = [
-  { text: "ID", value: "id", sortable: true},
-  { text: "PSEUDO", value: "pseudo", sortable: true},
-  { text: "EMAIL", value: "email"},
-  { text: "CLASSEMENT", value: "classement", sortable: true},
-  { text: "ACTIONS", value: "actions"},
+  { text: "ID", value: "id", sortable: true },
+  { text: "PSEUDO", value: "pseudo", sortable: true },
+  { text: "EMAIL", value: "email" },
+  { text: "CLASSEMENT", value: "classement", sortable: true },
+  { text: "ACTIONS", value: "actions" },
 ];
 
 const items: Item[] = [
@@ -79,9 +62,9 @@ const filteredItems = computed(() => {
   if (!searchQuery.value) return items;
   const query = searchQuery.value.toLowerCase();
   return items.filter(item =>
-      Object.values(item).some(value =>
-          String(value).toLowerCase().includes(query)
-      )
+    Object.values(item).some(value =>
+      String(value).toLowerCase().includes(query)
+    )
   );
 });
 
@@ -95,7 +78,15 @@ const handleDelete = (item: Item) => {
 </script>
 
 <style scoped>
-
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
+  /* Added box shadow */
+}
 
 .search-bar {
   width: 100%;
@@ -106,6 +97,7 @@ const handleDelete = (item: Item) => {
   font-size: 16px;
   outline: none;
 }
+
 .search-bar:focus {
   border-color: #007bff;
 }
@@ -141,29 +133,33 @@ const handleDelete = (item: Item) => {
 
 
 .search-container {
-  width: 100%; /* Assurez-vous que le conteneur prend toute la largeur */
+  width: 95%;
+  padding: 20px;
+  height: 100%;
+  justify-content: center !important;
+  /* Assurez-vous que le conteneur prend toute la largeur */
 }
 
-.conteneur{
+.conteneur {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: white;
   border-radius: 20px;
-  box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
-  padding-left: 20px;
-  padding-right: 20px;
+  height: 100%;
 }
 
 .search-bar {
-  width: 100%; /* Prend 100% de la largeur de son conteneur */
+  width: 100%;
+  /* Prend 100% de la largeur de son conteneur */
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
   outline: none;
-  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
+  box-sizing: border-box;
+  /* Inclut le padding et la bordure dans la largeur */
 }
 
 .search-bar:focus {
@@ -175,5 +171,4 @@ const handleDelete = (item: Item) => {
   overflow: hidden;
   background: white;
 }
-
 </style>

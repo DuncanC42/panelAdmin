@@ -2,6 +2,7 @@
 
 import PieChart from '../components/PieChart.vue';
 import DiagramChart from '@/components/DiagramChart.vue';
+import PlayerManagement from "@/views/PlayerManagement.vue";
 </script>
 
 <template>
@@ -45,9 +46,9 @@ import DiagramChart from '@/components/DiagramChart.vue';
     display: flex;
     justify-content: center;
     gap: 30px;
-    height: 86vh;
+    height: 82vh;
     background: linear-gradient(45deg, rgba(223, 223, 223, 0) 0%, #CADFF2 100%);
-    padding: 2vh;
+    padding: 30px;
 }
 
 /* #DFDFDF with 0 opacity to #CADFF2 with 100% opcacity in diagonal */
@@ -84,7 +85,7 @@ import DiagramChart from '@/components/DiagramChart.vue';
     width: 100%;
 }
 
-.chart>* {
+.chart>*{
     height: 100%;
     width: 100%;
 }
@@ -93,7 +94,7 @@ import DiagramChart from '@/components/DiagramChart.vue';
     transform: scale(1.03);
 }
 
-.column>*>* {
+ .column > *>* {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: 0.1s;
     display: flex;

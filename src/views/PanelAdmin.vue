@@ -5,14 +5,16 @@ import DiagramChart from '@/components/DiagramChart.vue';
 import PlayerManagement from "@/views/PlayerManagement.vue";
 import { useTokenStore } from '@/stores/tokenStore';
 import { useRouter } from 'vue-router';
+import { fetchBackend } from '@/composable/fetchBackend';
 
 const router = useRouter();
 const tokenStore = useTokenStore();
 
+fetchBackend('intranet/hello', 'GET')
+
 if (!tokenStore.isAuthenticated) {
     router.push('/');
 }
-
 
 </script>
 

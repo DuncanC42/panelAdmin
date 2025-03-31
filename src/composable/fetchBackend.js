@@ -1,4 +1,5 @@
-const STATIC_TOKEN = 'your-static-token-here';
+import { useTokenStore } from '../stores/tokenStore';
+
 /*
 * Composable pour fetch apiCodeine
 * exemple : fetchBackend('users', 'GET', {adresse_mail : '123@gmail.com', password : 'moi'}, {page: 1, limit: 10})
@@ -6,6 +7,7 @@ const STATIC_TOKEN = 'your-static-token-here';
 export async function fetchBackend(endpoint, method = 'GET', body = null, params = {}) {
     try {
         const url = new URL(`http://localhost:8050/${endpoint}`);
+        const tokenStore = useTokenStore();
 
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -13,9 +15,13 @@ export async function fetchBackend(endpoint, method = 'GET', body = null, params
             method,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${STATIC_TOKEN}`
             }
         };
+
+        // Use token from store if available
+        if (tokenStore.isAuthenticated) {
+            options.headers['Authorization'] = `Bearer ${tokenStore.getToken}`;
+        }
 
         if (body) {
             options.body = JSON.stringify(body);

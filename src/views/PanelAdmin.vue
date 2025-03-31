@@ -3,6 +3,17 @@
 import PieChart from '../components/PieChart.vue';
 import DiagramChart from '@/components/DiagramChart.vue';
 import PlayerManagement from "@/views/PlayerManagement.vue";
+import { useTokenStore } from '@/stores/tokenStore';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const tokenStore = useTokenStore();
+
+if (!tokenStore.isAuthenticated) {
+    router.push('/');
+}
+
+
 </script>
 
 <template>

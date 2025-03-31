@@ -4,6 +4,9 @@ import CustomInput from './CustomInput.vue';
 import ButtonConnexion from './ButtonConnexion.vue';
 import { ref, inject } from 'vue';
 import { useRouter } from 'vue-router';
+import { fetchBackend } from '@/composable/fetchBackend';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 const router = useRouter()
 const email = ref('')
@@ -15,11 +18,52 @@ const showLoading = inject('showLoading');
 const emit = defineEmits(['connectAccount'])
 
 const handleCreate = () => {
+    if (password.value !== password_check.value) {
+        toast("Les mots de passe saisient sont différents !", {
+            "theme": "colored",
+            "type": "error",
+            "position": "top-center"
+        })
+        return
+    }
+    if (password.value.length < 8) {
+        toast("Le mot de passe doit faire au moins 8 caractères !", {
+            "theme": "colored",
+            "type": "error",
+            "position": "top-center"
+        })
+        return
+    }
     showLoading.value = true
-    setTimeout(() => {
-        router.push('panel')
-    }, 1000)
+
+    fetchBackend('intranet/register', 'POST', { email: email.value, password: password.value })
+        .then(response => {
+            if (response.status === 409) {
+                toast("L'email est déjà utilisé !", {
+                    "theme": "colored",
+                    "type": "error",
+                    "position": "top-center"
+                })
+            } else if (response.status === 201) {
+                toast("Votre compte a été créé avec succès !", {
+                    "theme": "colored",
+                    "type": "success",
+                    "position": "top-center"
+                })
+                emit('connectAccount')
+            } else {
+                toast("Une erreur est survenue lors de la création du compte !", {
+                    "theme": "colored",
+                    "type": "error",
+                    "position": "top-center"
+                })
+            }
+        })
+        .finally(() => {
+            showLoading.value = false
+        })
 }
+
 
 const handleConnect = () => {
     emit('connectAccount')

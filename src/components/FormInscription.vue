@@ -18,8 +18,18 @@ const showLoading = inject('showLoading');
 const emit = defineEmits(['connectAccount'])
 
 const handleCreate = () => {
+    const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
+    if (!emailRegex.test(email.value)) {
+        toast("Veuillez saisir une adresse email valide !", {
+            "theme": "colored",
+            "type": "error",
+            "position": "top-center"
+        })
+        return
+    }
+
     if (password.value !== password_check.value) {
-        toast("Les mots de passe saisient sont différents !", {
+        toast("Les mots de passe saisis sont différents !", {
             "theme": "colored",
             "type": "error",
             "position": "top-center"

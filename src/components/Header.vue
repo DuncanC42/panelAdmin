@@ -1,31 +1,33 @@
 <script setup>
+import { useTokenStore } from '@/stores/tokenStore';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
-defineProps({
-    isConnected: {
-        type: Boolean,
-        default: false
-    }
-})
+const tokenStore = useTokenStore();
+const { isAuthenticated } = storeToRefs(tokenStore);
 
-
+const logout = () => {
+    tokenStore.removeToken();
+    router.push('/');
+};
 </script>
 
 
 <template>
     <header>
         <img src="@/assets/logo_cpam.jpg" alt="logo" />
-        <div v-if="!isConnected" class="status blue">
+        <div v-if="!isAuthenticated" class="status blue">
             <div>
                 <font-awesome-icon :icon="['fas', 'info']" />
             </div>
             <span>Déconnecté</span>
         </div>
-        <div v-else class="status red">
+        <div v-else class="status red" @click="logout">
             <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" />
             <span>Se déconnecter</span>
         </div>
     </header>
-
 </template>
 
 <style scoped>
@@ -74,5 +76,4 @@ header {
 .red:hover {
     color: rgb(185, 0, 0);
 }
-
 </style>

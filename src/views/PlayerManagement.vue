@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { default as EasyDataTable } from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -27,44 +27,61 @@ import { faTrash, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 library.add(faTrash, faMagnifyingGlass);
 
 type Item = {
-  id: string;
-  pseudo: string;
-  email: string;
-  classement: number;
+  id,
+  pseudo,
+  email,
+  classement,
 };
 
+const URI = import.meta.env.VITE_URI;
+const API_PORT = import.meta.env.VITE_API_PORT;
+
 const headers = [
-  { text: "ID", value: "id", sortable: true },
+  { text: "ID", value: "joueur_id", sortable: true },
   { text: "PSEUDO", value: "pseudo", sortable: true },
   { text: "EMAIL", value: "email" },
   { text: "CLASSEMENT", value: "classement", sortable: true },
   { text: "ACTIONS", value: "actions" },
 ];
 
-const items: Item[] = [
-  { id: "01", pseudo: "Timtim", email: "tribottetimeo@gmail.com", classement: 556 },
-  { id: "02", pseudo: "Dundun", email: "cadoretduncan@gmail.com", classement: 555 },
-  { id: "03", pseudo: "Maxmax", email: "dardennemaxime1@gmail.com", classement: 554 },
-  { id: "04", pseudo: "Natnat", email: "filauxnathan1@gmail.com", classement: 553 },
-  { id: "05", pseudo: "Timtim1", email: "tribottetimeo1@gmail.com", classement: 400 },
-  { id: "06", pseudo: "Dundun1", email: "cadoretduncan1@gmail.com", classement: 330 },
-  { id: "07", pseudo: "Maxmax1", email: "dardennemaxime3@gmail.com", classement: 320 },
-  { id: "08", pseudo: "Natnat1", email: "filauxnathan3@gmail.com", classement: 310 },
-  { id: "09", pseudo: "Timtim2", email: "tribottetimeo3@gmail.com", classement: 310 },
-  { id: "10", pseudo: "Dundun2", email: "cadoretduncan4@gmail.com", classement: 299 },
-  { id: "11", pseudo: "Maxmax2", email: "dardennemaxime4@gmail.com", classement: 288 },
-];
-
-const itemsSelected = ref<Item[]>([]);
+const items = ref([]);
+const itemsSelected = ref([]);
 const searchQuery = ref("");
+const loading = ref(false);
+const errorMessage = ref("");
+
+// Fonction pour récupérer les joueurs
+const fetchPlayers = async () => {
+  loading.value = true;
+  errorMessage.value = "";
+
+  try {
+    const response = await fetch(`http://${URI}:${API_PORT}/players/by/id`);
+    const data = await response.json();
+
+    if (data.success) {
+      items.value = data.joueurs;
+    } else {
+      errorMessage.value = "Impossible de récupérer les joueurs.";
+    }
+  } catch (error) {
+    errorMessage.value = "Erreur lors du chargement des joueurs.";
+    console.error("Erreur API:", error);
+  } finally {
+    loading.value = false;
+  }
+};
+
+// Appeler l'API au chargement du composant
+onMounted(fetchPlayers);
 
 const filteredItems = computed(() => {
-  if (!searchQuery.value) return items;
+  if (!searchQuery.value) return items.value;
   const query = searchQuery.value.toLowerCase();
-  return items.filter(item =>
-    Object.values(item).some(value =>
-      String(value).toLowerCase().includes(query)
-    )
+  return items.value.filter(item =>
+      Object.values(item).some(value =>
+          String(value).toLowerCase().includes(query)
+      )
   );
 });
 
@@ -75,6 +92,7 @@ const handleSearch = (item: Item) => {
 const handleDelete = (item: Item) => {
   console.log('Suppression de l\'élément:', item);
 };
+
 </script>
 
 <style scoped>

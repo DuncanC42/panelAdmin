@@ -33,6 +33,9 @@ type Item = {
   classement: number | null;
 };
 
+const URI = import.meta.env.VITE_URI;
+const API_PORT = import.meta.env.VITE_API_PORT;
+
 const headers = [
   { text: "ID", value: "joueur_id", sortable: true },
   { text: "PSEUDO", value: "pseudo", sortable: true },
@@ -53,7 +56,7 @@ const fetchPlayers = async () => {
   errorMessage.value = "";
 
   try {
-    const response = await fetch("http://localhost:8050/players/by/id"); // 🔹 Adapter l'URL selon ton environnement
+    const response = await fetch(`http://${URI}:${API_PORT}/players/by/id`);
     const data = await response.json();
 
     if (data.success) {

@@ -4,8 +4,13 @@ import CustomInput from './CustomInput.vue';
 import ButtonConnexion from './ButtonConnexion.vue';
 import { ref, inject } from 'vue';
 import { useRouter } from 'vue-router';
+import { fetchBackend } from '@/composable/fetchBackend';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+import { useTokenStore } from '@/stores/tokenStore';
 
 const router = useRouter()
+const tokenStore = useTokenStore();
 const email = ref('')
 const password = ref('')
 const showLoading = inject('showLoading');
@@ -14,9 +19,29 @@ const emit = defineEmits(['createAccount'])
 
 const handleConnect = () => {
     showLoading.value = true
-    setTimeout(() => {
-        router.push('panel')
-    }, 1000)
+
+    fetchBackend('intranet/login', 'POST', { email: email.value, password: password.value })
+        .then(response => {
+            if (response.status === 401) {
+                toast("Email ou mot de passe incorrect !", {
+                    "theme": "colored",
+                    "type": "error",
+                    "position": "top-center"
+                })
+            } else if (response.status === 200) {
+                tokenStore.setToken(response.data.token);
+                router.push('panel');
+            } else {
+                toast("Une erreur est survenue lors de la connexion !", {
+                    "theme": "colored",
+                    "type": "error",
+                    "position": "top-center"
+                })
+            }
+        })
+        .finally(() => {
+            showLoading.value = false
+        })
 }
 
 const handleCreate = () => {

@@ -27,10 +27,10 @@ import { faTrash, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 library.add(faTrash, faMagnifyingGlass);
 
 type Item = {
-  id: string;
-  pseudo: string;
-  email: string;
-  classement: number | null;
+  id,
+  pseudo,
+  email,
+  classement,
 };
 
 const URI = import.meta.env.VITE_URI;
@@ -44,8 +44,8 @@ const headers = [
   { text: "ACTIONS", value: "actions" },
 ];
 
-const items = ref<Item[]>([]);
-const itemsSelected = ref<Item[]>([]);
+const items = ref([]);
+const itemsSelected = ref([]);
 const searchQuery = ref("");
 const loading = ref(false);
 const errorMessage = ref("");

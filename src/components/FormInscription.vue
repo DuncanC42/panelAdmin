@@ -46,7 +46,7 @@ const handleCreate = () => {
     }
     showLoading.value = true
 
-    fetchBackend('intranet/register', 'POST', { email: email.value, password: password.value })
+    fetchBackend('intranet/register', 'POST', { email: email.value, password: password.value, token: key.value })
         .then(response => {
             if (response.status === 409) {
                 toast("L'email est déjà utilisé !", {
@@ -61,7 +61,20 @@ const handleCreate = () => {
                     "position": "top-center"
                 })
                 emit('connectAccount')
-            } else {
+            } else if (response.status === 403) {
+                toast("La clé d'authentification est invalide !", {
+                    "theme": "colored",
+                    "type": "error",
+                    "position": "top-center"
+                })
+            } else if (response.status === 500) {
+                toast("Une erreur est survenue lors de la création du compte !", {
+                    "theme": "colored",
+                    "type": "error",
+                    "position": "top-center"
+                })
+            }
+            else {
                 toast("Une erreur est survenue lors de la création du compte !", {
                     "theme": "colored",
                     "type": "error",

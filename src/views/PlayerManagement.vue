@@ -107,7 +107,7 @@ const fetchPlayers = async () => {
   errorMessage.value = "";
 
   try {
-    const response = await fetch(`http://${URI}:${API_PORT}/players/sorted/by-id`);
+    const response = await fetch(`http://${URI}:${API_PORT}/intranet/players/sorted/by-id`);
     const data = await response.json();
 
     if (data.success) {
@@ -141,7 +141,7 @@ const handleSearch = async (itemData) => {
   showModal.value = true;
 
   try {
-    const response = await fetch(`http://${URI}:${API_PORT}/player/${itemData.joueur_id}/score`);
+    const response = await fetch(`http://${URI}:${API_PORT}/intranet/player/${itemData.joueur_id}/score`);
     const data = await response.json();
 
     if (data.success) {

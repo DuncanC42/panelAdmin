@@ -1,15 +1,15 @@
 <template>
     <div class="card">
         <div class="search-container">
-            <input v-model="searchQuery" type="text" placeholder="Rechercher..." class="search-bar"/>
+            <input v-model="searchQuery" type="text" placeholder="Rechercher..." class="search-bar" />
             <easy-data-table v-model:items-selected="itemsSelected" :headers="headers" :items="filteredItems"
-                             :rows-per-page="20" class="data-table">
+                :rows-per-page="20" class="data-table">
                 <template #item-actions="item">
                     <div class="action-buttons">
                         <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="action-icon search-icon"
-                                           @click="handleSearch(item)"/>
+                            @click="handleSearch(item)" />
                         <font-awesome-icon :icon="['fas', 'trash']" class="action-icon delete-icon"
-                                           @click="handleDelete(item)"/>
+                            @click="handleDelete(item)" />
                     </div>
                 </template>
             </easy-data-table>
@@ -22,7 +22,8 @@
                 <div class="player-header">
                     <h2>{{ selectedPlayer ? selectedPlayer.joueur.pseudo : 'Chargement...' }}</h2>
                     <h2 class="id-player">
-                        #{{ selectedPlayer.joueur.classement_general ? selectedPlayer.joueur.classement_general : '0' }}</h2>
+                        #{{ selectedPlayer.joueur.classement_general ? selectedPlayer.joueur.classement_general : '0' }}
+                    </h2>
                 </div>
                 <button class="close-button" @click="closeModal">✕</button>
             </div>
@@ -31,21 +32,21 @@
                 <div class="player-info-column">
                     <div class="info-box">
                         <p>
-                            <strong>Adresse mail :</strong><br/>
+                            <strong>Adresse mail :</strong><br />
                             {{ selectedPlayer ? selectedPlayer.joueur.email : 'Chargement...' }}
                         </p>
 
                         <p>
-                            <strong>Dernière connexion :</strong><br/>
+                            <strong>Dernière connexion :</strong><br />
                             {{ selectedPlayer ? selectedPlayer.joueur.derniere_connexion : 'Chargement...' }}
                         </p>
 
                         <p>
-                            <strong>Temps de jeu total</strong><br/>
+                            <strong>Temps de jeu total</strong><br />
                             {{ selectedPlayer ? selectedPlayer.joueur.temps_joue : 'Chargement...' }}
                         </p>
                         <p>
-                            <strong>Nombre de partages</strong><br/>
+                            <strong>Nombre de partages</strong><br />
                             {{ selectedPlayer ? selectedPlayer.joueur.nb_partage : 'Chargement...' }}
                         </p>
                     </div>
@@ -57,8 +58,8 @@
                     <div class="game-results">
                         <div v-for="score in selectedPlayer.scores" :key="score.jeu_id">
                             <h4>{{ score.jeu_nom ? score.jeu_nom : '' }}</h4>
-                            <p>{{ score.points ? score.points + "pts" : ''}} </p>
-                            <p>{{ score.classement ? '#' + score.classement : ''}}</p>
+                            <p>{{ score.points ? score.points + "pts" : '' }} </p>
+                            <p>{{ score.classement ? '#' + score.classement : '' }}</p>
                         </div>
                     </div>
                 </div>
@@ -68,13 +69,13 @@
 </template>
 
 <script setup lang="ts">
-import {ref, computed, onMounted} from "vue";
-import {default as EasyDataTable} from 'vue3-easy-data-table';
+import { ref, computed, onMounted } from "vue";
+import { default as EasyDataTable } from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
-import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {faTrash, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
-import {fetchBackend} from '@/composable/fetchBackend';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { fetchBackend } from '@/composable/fetchBackend';
 
 library.add(faTrash, faMagnifyingGlass);
 
@@ -89,11 +90,11 @@ const URI = import.meta.env.VITE_URI;
 const API_PORT = import.meta.env.VITE_API_PORT;
 
 const headers = [
-    {text: "ID", value: "joueur_id", sortable: true},
-    {text: "PSEUDO", value: "pseudo", sortable: true},
-    {text: "EMAIL", value: "email"},
-    {text: "CLASSEMENT", value: "classement", sortable: true},
-    {text: "ACTIONS", value: "actions"},
+    { text: "ID", value: "joueur_id", sortable: true },
+    { text: "PSEUDO", value: "pseudo", sortable: true },
+    { text: "EMAIL", value: "email" },
+    { text: "CLASSEMENT", value: "classement", sortable: true },
+    { text: "ACTIONS", value: "actions" },
 ];
 
 const showModal = ref(false);
@@ -290,8 +291,10 @@ const handleDelete = (itemData) => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent */
-    backdrop-filter: blur(8px); /* Effet de flou */
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Semi-transparent */
+    backdrop-filter: blur(8px);
+    /* Effet de flou */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -307,10 +310,12 @@ const handleDelete = (itemData) => {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 
-    position: absolute; /* Assurez-vous qu'elle est positionnée indépendamment */
+    position: absolute;
+    /* Assurez-vous qu'elle est positionnée indépendamment */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centre parfaitement la modale */
+    transform: translate(-50%, -50%);
+    /* Centre parfaitement la modale */
 }
 
 .id-player {
@@ -426,7 +431,8 @@ const handleDelete = (itemData) => {
     font-size: 16px;
     font-weight: 600;
     color: #333;
-    width: 180px; /* Largeur fixe pour le nom du jeu */
+    width: 180px;
+    /* Largeur fixe pour le nom du jeu */
 }
 
 .game-results p {
@@ -446,5 +452,4 @@ const handleDelete = (itemData) => {
     color: #f0ad4e;
     font-weight: bold;
 }
-
 </style>

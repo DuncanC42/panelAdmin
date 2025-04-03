@@ -100,6 +100,10 @@ span {
 	align-self: center;
 }
 
+.conteneur{
+	background-color: white;
+}
+
 .chart {
 	width: 85%;
 	height: 85%;

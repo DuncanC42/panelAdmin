@@ -107,7 +107,7 @@ const fetchPlayers = async () => {
   errorMessage.value = "";
 
   try {
-    const response = await fetch(`http://${URI}:${API_PORT}/intranet/players/sorted/by-id`);
+    const response = await fetch(`http://${URI}:${API_PORT}/intranet/players/by/id`);
     const data = await response.json();
 
     if (data.success) {

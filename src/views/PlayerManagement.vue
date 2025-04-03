@@ -193,11 +193,12 @@ const handleDelete = (itemData) => {
 .card {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start; /* Changed from baseline to flex-start */
+    align-items: center; /* Added to center the search-container */
     background-color: white;
     border-radius: 20px;
     box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.1);
-    /* Added box shadow */
+    height: 100%; /* Added to ensure the card takes full height */
 }
 
 .search-bar {
@@ -244,12 +245,13 @@ const handleDelete = (itemData) => {
 }
 
 
+
 .search-container {
     width: 95%;
-    padding: 20px;
-    height: 100%;
-    justify-content: center !important;
-    /* Assurez-vous que le conteneur prend toute la largeur */
+    height: 93%;
+    padding: 10px;
+    padding-bottom: 40px;
+    margin-top: 0; /* Explicitly set top margin to 0 */
 }
 
 .conteneur {
@@ -279,6 +281,7 @@ const handleDelete = (itemData) => {
 }
 
 .data-table {
+    height: 95%;
     border-radius: 8px;
     overflow: hidden;
     background: white;

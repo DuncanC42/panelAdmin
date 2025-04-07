@@ -3,9 +3,10 @@
 import PieChart from '../components/PieChart.vue';
 import DiagramChart from '@/components/DiagramChart.vue';
 import PlayerManagement from "@/views/PlayerManagement.vue";
-import { useTokenStore } from '@/stores/tokenStore';
-import { useRouter } from 'vue-router';
-import { fetchBackend } from '@/composable/fetchBackend';
+import {useTokenStore} from '@/stores/tokenStore';
+import {useRouter} from 'vue-router';
+import {fetchBackend} from '@/composable/fetchBackend';
+import NombreVisiteurs from "@/components/NombreVisiteurs.vue";
 
 const router = useRouter();
 const tokenStore = useTokenStore();
@@ -32,10 +33,10 @@ if (!tokenStore.isAuthenticated) {
                 </div>
             </transition>
         </div>
-        <div class="column" style="width: 70vw;">
+        <div class="column" style="width: 50vw; height: 25vh;">
             <transition name="slide-fade" appear>
                 <div class="chart chart-3" key="chart3">
-                    <PieChart></PieChart>
+                    <NombreVisiteurs></NombreVisiteurs>
                 </div>
             </transition>
         </div>
@@ -71,7 +72,7 @@ if (!tokenStore.isAuthenticated) {
     height: 100%;
 }
 
-.column>* {
+.column > * {
     height: 100%;
     width: 100%;
 }
@@ -94,16 +95,16 @@ if (!tokenStore.isAuthenticated) {
     width: 100%;
 }
 
-.chart>* {
+.chart > * {
     height: 100%;
     width: 100%;
 }
 
-.column>*>*:hover {
+.column > * > *:hover {
     transform: scale(1.03);
 }
 
-.column>*>* {
+.column > * > * {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transition-delay: 0.1s;
     display: flex;

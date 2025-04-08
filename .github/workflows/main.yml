@@ -29,5 +29,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22  # ajuste si nécessaire
           source: "dist"
-          target: "/home/sae5-team6/web-back"
+          target: "/home/sae5-team6/web-back/build"
           strip_components: 1

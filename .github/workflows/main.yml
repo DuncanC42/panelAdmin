@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]  # ou master, selon votre branche principale
+    branches: [ master ]
 
 jobs:
   build-and-deploy:
@@ -27,5 +27,7 @@ jobs:
           host: sae5-team6.ventsdouest.dev
           username: sae5-team6
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/"  # ou "build/" selon votre configuration
+          port: 22  # ajuste si nécessaire
+          source: "dist/"
           target: "/home/sae5-team6/web-back"
+          strip_components: 1

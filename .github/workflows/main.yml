@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]  # ou master, selon votre branche principale
+    branches: [ master ]  # je modifie un commentaire pour tester la mise en prod sur push
 
 jobs:
   build-and-deploy:

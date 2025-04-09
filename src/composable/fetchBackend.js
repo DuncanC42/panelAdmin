@@ -9,9 +9,10 @@ import { useRouter } from 'vue-router';
 */
 export async function fetchBackend(endpoint, method = 'GET', body = null, params = {}) {
     const router = useRouter();
-
+    const URI = import.meta.env.VITE_URI;
+    const API_PORT = import.meta.env.VITE_API_PORT;
     try {
-        const url = new URL(`http://localhost:8050/${endpoint}`);
+        const url = new URL(`http://${URI}:${API_PORT}/${endpoint}`);
         const tokenStore = useTokenStore();
 
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));

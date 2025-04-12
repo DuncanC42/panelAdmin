@@ -4,6 +4,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
+const PANEL_ADMIN_PORT = 8081;
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -17,7 +19,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    port: 8081,  // Configuré pour correspondre au port dans Docker
+    port: PANEL_ADMIN_PORT,  // Configuré pour correspondre au port dans Docker
     watch: {
       usePolling: true
     }
